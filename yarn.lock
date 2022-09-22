@@ -5140,10 +5140,10 @@ node-sass@4.5.3:
     sass-graph "^2.1.1"
     stdout-stream "^1.4.0"
 
-node@14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/node/-/node-14.0.0.tgz#8c3f29256baf46974de9a02908c098004c9b39c3"
-  integrity sha512-PtVcllTLQWZkrYKmdsgUyjXGC+ghdslsSpwYTjt44tUURT5hYPu+6y5ZuNT+U+JHuZPxHhzl4PQdHOAZOoEBtA==
+node@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-8.3.0.tgz#478e84ffcc4be39938306ace1c4613c8231e5f44"
+  integrity sha512-RU3iQgXeDBU45dv6BrfDrgTyUjJk1yorN64l0sce+E+2pZzFbRbBicPMBD/hWjo0GSMnA5a+RwFtWwHNDlojaw==
   dependencies:
     node-bin-setup "^1.0.0"
 
