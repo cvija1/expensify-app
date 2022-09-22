@@ -30,6 +30,7 @@
     "node": "14.x",
     "node-sass": "4.5.3",
     "normalize.css": "7.0.0",
+    "numeral": "2.0.6",
     "nvm": "^0.0.4",
     "raf": "3.3.2",
     "react": "16.0.0",
