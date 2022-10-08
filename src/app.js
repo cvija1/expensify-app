@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import AppRouter from './routers/AppRouter';
+import AppRouter,{history} from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {startSetExpenses} from './actions/expenses';
-import {setTextFilter} from './actions/filters';
+import {login, logout} from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import './firebase/firebase';
+import {firebase} from './firebase/firebase';
 
 
 
@@ -24,14 +24,39 @@ const jsx=(
         <AppRouter/>
     </Provider>
 );
-try{
-ReactDOM.render(<p>Loading...</p>, document.getElementById("app"));
-store.dispatch(startSetExpenses()).then(()=>{
-    ReactDOM.render(jsx, document.getElementById("app"));
-});
-}catch(e){
-    console.log(e)
+let hasRendered=false;
+const renderApp=()=>{
+    if(!hasRendered){
+        ReactDOM.render(jsx, document.getElementById("app"));
+        hasRendered=true;
+    }
 }
+
+ReactDOM.render(<p>Loading...</p>, document.getElementById("app"));
+
+
+
+//provjeraa da li je korisnik ulogovan ili ne
+firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+        //login smjesten tu da bi se svaki put provjeravalo da je neko ulogovan ili ne
+        //a ne samo kad se eksplicitno ulogujes ili izlogujes
+        store.dispatch(login(user.uid))
+        store.dispatch(startSetExpenses()).then(()=>{
+            renderApp();
+            if(history.location.pathname==='/'){
+        history.push('/dashboard');
+      
+            }
+        });
+    }else{
+        store.dispatch(logout());
+        renderApp();
+        history.push('/');
+        
+    }
+})
+
 
 
 
