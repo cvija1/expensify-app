@@ -29,7 +29,7 @@ test('should setup add expense action object with provided values',()=>{
         type:'ADD_EXPENSE',
         expense:
         {
-        id:expect.any(String),
+        
         description:'srbija',
         amount:500,
         createdAt:1000,
@@ -41,12 +41,6 @@ test('should setup add expense action object with default values',()=>{
     const action=addExpense();
     expect(action).toEqual({
         type:'ADD_EXPENSE',
-        expense:{
-            id:expect.any(String),
-            description:'',
-            amount:0,
-            createdAt:0,
-            note:''
-        }
+        expense:undefined
     });
 });
